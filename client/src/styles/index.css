@@ -1,0 +1,81 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color:white;
+  }
+h2{
+  font-size: 2em;
+  
+
+}
+
+h3{
+  font-size: 1.8em;
+  font-weight: 500;
+}
+  .nav {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 2rem;
+    padding:  1rem 2rem;
+  }
+  
+  #site-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color:#FF005C;
+  }
+  
+  .nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav a {
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+  }
+  
+  .nav li.active {
+    color:#FF005C
+  }
+  
+  .nav li:hover {
+    text-decoration: underline;
+    color:#FF005C
+  }
+
+  header p{
+    color:white;
+  }
+
+  #hero{
+    font-size: 3.5em;
+    font-weight: bold;
+    color:white
+  }
+
+  p{
+    line-height: 190%;
+  }
+
+  .star{
+    color:yellow;
+    
+  }
+

@@ -1,8 +1,8 @@
 import Navbar from "./Navbar"
-import Pricing from "./pages/Pricing"
+import SingleMovie from "./pages/SingleMovie"
 import Home from "./pages/Home"
-import About from "./pages/About"
-import "./styles.css"
+import Movies from "./pages/Movies"
+import './styles/index.css'; 
 import { Route, Routes } from "react-router-dom"
 
 
@@ -12,13 +12,14 @@ import { Route, Routes } from "react-router-dom"
   return (
     <>
       <Navbar />
-      <div className="container">
+     
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/about" element={<About />} />
+         
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/single-movie" element={<SingleMovie />} />
         </Routes>
-      </div>
+  
     </>
   )
 
