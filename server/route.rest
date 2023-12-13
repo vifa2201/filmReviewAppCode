@@ -1,0 +1,30 @@
+
+GET http://localhost:3000/films/
+
+###
+POST http://localhost:3000/films
+Content-Type: application/json
+
+{
+  "title": "film2",
+  "description": "en film gjord i sverige.",
+  "coverImage": "film2_cover.jpg",
+  "year": 2023,
+  "genre": "Skräck",
+  "reviews": [
+    {
+      "rating": 2.5,
+      "comment": "Not good!",
+      "date": "2023-01-01T12:30:00Z"
+    },
+    {
+      "rating": 3.8,
+      "comment": "Interesting moovie",
+      "date": "2023-01-02T10:45:00Z"
+    }
+  ]
+}
+
+###
+
+DELETE http://localhost:3000/films/6577260b818430d75f4def79
