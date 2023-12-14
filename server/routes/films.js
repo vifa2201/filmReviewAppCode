@@ -1,7 +1,23 @@
 const express = require('express')
+const app = express();
+//paket för bilduppladdning
+const multer = require('multer')
+const path = require('path');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './images')
+    },
+
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({storage: storage})
 const router = express.Router()
 const Film = require('../models/films')
 module.exports = router
+
 
 // hämta alla filmer
 router.get('/',  async (req, res) => {
@@ -20,11 +36,11 @@ router.get('/:id', getFilm, (req, res) => {
 })
 
 //Skapa film
-router.post('/', async (req, res) => {
+router.post('/', upload.single('coverImage'), async (req, res) => {
     const film = new Film({
         title: req.body.title,
         description: req.body.description,
-        coverImage: req.body.coverImage, 
+        coverImage: req.file.path, 
         year: req.body.year,
         genre: req.body.genre,
         reviews: req.body.reviews

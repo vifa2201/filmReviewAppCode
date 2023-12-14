@@ -42,34 +42,61 @@ export default function SingleMovie() {
             </main>
             <section className="bg-grey p-4">
     <div className="container">
-        <h3 className='mb-4'>Mer som denna</h3>
+      
         <div className="grid grid-cols-2 ">
-            <div className="table-responsive ">
-            <table class="w-50 text-sm text-left rtl:text-right border-spacing-2 ">
+            <div className="table-responsive text-center mx-auto">
+            <h3 className='mb-4'>Liknande filmer</h3>
+            <table class="w-100 text-sm text-left rtl:text-right">
                     <tbody>
                         <tr className="border-b">
                             <th scope="row">1</th>
-                            <td scope="row"> <img src="./img/image.jpeg" className="w-12 h-12 mx-auto" alt="" /></td>
+                            <td scope="row"> <img src="./img/image.jpeg" className="w-12 h-12 mx-auto mb-2" alt="" /></td>
                             <td scope="row"> <strong>Filmens titel</strong> <br /> regissörens namn</td>
                         </tr>
                  
                         <tr className="border-b">
                             <th scope="row">2</th>
-                            <td scope="row"> <img src="./img/image.jpeg" className="w-12 h-12 mx-auto" alt="" /></td>
+                            <td scope="row"> <img src="./img/image.jpeg" className="w-12 h-12 mx-auto mt-4 mb-2" alt="" /></td>
                             <td scope="row"> <strong>Filmens titel</strong> <br /> regissörens namn</td>
                         </tr>
 
                         <tr className="border-b ">
                             <th scope="row">2</th>
-                            <td scope="row"> <img src="./img/image.jpeg" className="w-12 h-12 mx-auto" alt="" /></td>
+                            <td scope="row"> <img src="./img/image.jpeg" className="w-12 h-12 mx-auto mt-4 mb-2" alt="" /></td>
                             <td scope="row"> <strong>Filmens titel</strong> <br /> regissörens namn</td>
                         </tr>
                    
                     </tbody>
                 </table>
             </div>
-            <div className='md:w-1/2 p-4'>
+            <div className='md:w-3/4 p-4'>
                 <h3>Användares recensioner</h3>
+                <div className="line"></div>
+                <div className="review">
+               
+                    <h4 className='mt-4 mb-2'>Väldigt bra action film</h4>
+                    <div>
+                            <FontAwesomeIcon className='star' icon={faStar} />
+                            <FontAwesomeIcon className='star' icon={faStar} />
+                            <FontAwesomeIcon className='star' icon={faStar} />
+                            <FontAwesomeIcon className='star' icon={faStar} />
+                        </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio numquam consequuntur officia iure quasi natus tenetur laudantium sint ex illum.</p>
+                <div className="line"></div>
+
+                <div className="review">
+               
+               <h4 className='mt-4 mb-2'>Helt okej.......</h4>
+               <div>
+                       <FontAwesomeIcon className='star' icon={faStar} />
+                       <FontAwesomeIcon className='star' icon={faStar} />
+                 
+                   </div>
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio numquam consequuntur officia iure quasi natus tenetur laudantium sint ex illum.</p>
+           <div className="line"></div>
+           </div>
+                </div>
+            
                 </div>
         </div>
     </div>

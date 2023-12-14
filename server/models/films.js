@@ -4,11 +4,11 @@ const mongoose = require('mongoose')
 const reviewSchema = new mongoose.Schema({
     rating: {
       type: Number,
-      required: true
+      required: false
     },
     comment: {
       type: String,
-      required: true
+      required: false
     },
     date: {
       type: Date,
@@ -36,8 +36,7 @@ const reviewSchema = new mongoose.Schema({
     genre: {
       type: String,
       required: true
-    },
-    reviews: [reviewSchema] // använd reviewSchema för att inkludera recensioner
+    }
   })
 
   module.exports = mongoose.model('Films', filmSchema)

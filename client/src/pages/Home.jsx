@@ -8,7 +8,10 @@ export default function Home() {
       <>
         <Header />
     <PopularFilms />
+  
     <FilmList />
+
+  
       </>
   
     )
