@@ -1,5 +1,6 @@
 import Navbar from "./Navbar"
 import SingleMovie from "./pages/SingleMovie"
+import FilmDetail from "./pages/FilmDetail";
 import Home from "./pages/Home"
 import Movies from "./pages/Movies"
 import Footer from "./components/Footer"
@@ -16,9 +17,9 @@ import { Route, Routes } from "react-router-dom"
      
         <Routes>
           <Route path="/" element={<Home />} />
-         
           <Route path="/movies" element={<Movies />} />
           <Route path="/single-movie" element={<SingleMovie />} />
+          <Route path="/films/:id" element={<FilmDetail />} />
         </Routes>
       <Footer />
 

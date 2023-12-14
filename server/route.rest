@@ -1,5 +1,5 @@
 
-GET http://localhost:3000/films/
+GET http://localhost:3000/films/657af0aada967e0ba700dd27
 
 ###
 POST http://localhost:3000/films

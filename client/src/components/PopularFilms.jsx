@@ -31,10 +31,10 @@ export function PopularFilms() {
                 console.log(film.coverImage),
                 <div key={index}>
                     {/**utskrift av bild */}
+                    <a href={`/films/${film._id}`}>
                     <img src={`http://localhost:3000/${film.coverImage}`} alt={film.title} />
-
+                    </a>
                         <p>{film.title}</p>
-                            
                     </div>
                )   )}
                </div>
