@@ -37,22 +37,33 @@ router.get('/:id', getFilm, (req, res) => {
 
 //Skapa film
 router.post('/', upload.single('coverImage'), async (req, res) => {
-    const film = new Film({
-        title: req.body.title,
-        description: req.body.description,
-        coverImage: req.file.path, 
-        year: req.body.year,
-        genre: req.body.genre,
-        reviews: req.body.reviews
-    })
-    try{
-        const newFilm = await film.save()
-        res.status(201).json(newFilm)
+    try {
+        // Kontrollera om en fil har skickats med förfrågan
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
 
-    }catch (err){
-        res.status(400).json({message: err.message})
+        // Skapa en ny film med den skickade filen
+        const film = new Film({
+            title: req.body.title,
+            description: req.body.description,
+            coverImage: req.file.path,
+            year: req.body.year,
+            genre: req.body.genre,
+            reviews: req.body.reviews
+        });
+
+        // Spara filmen i databasen
+        const savedFilm = await film.save();
+
+        // Returnera den sparade filmen som JSON
+        res.json(savedFilm);
+    } catch (error) {
+        // Om något går fel, returnera ett felmeddelande
+        console.error('Error adding film:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-})
+});
 
 //uppdatera film
 router.patch('/:id', getFilm, async (req, res) => {

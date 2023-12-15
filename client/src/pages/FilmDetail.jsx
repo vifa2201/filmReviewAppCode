@@ -17,7 +17,7 @@ export default function FilmDetail() {
   }, [id]);
 
   if (!film) {
-    return <p>Laddar...</p>;
+    return <p>Ingen film hittades.</p>;
   }
 
   return (
