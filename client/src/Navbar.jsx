@@ -10,7 +10,9 @@ export default function Navbar() {
         <CustomLink to="/">Hem</CustomLink>
         <CustomLink to="/movies">Filmer</CustomLink>
         <CustomLink to="/single-movie">En film</CustomLink>
-        <CustomLink to="/pricing">Betyg</CustomLink>
+    
+        <CustomLink to="/login">Login</CustomLink>
+
     
       </ul>
     </nav>

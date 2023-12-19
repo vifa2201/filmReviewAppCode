@@ -7,32 +7,26 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 
 
-export function PopularFilms() {
+export function LatestFilms() {
 
     const [films, setFilms] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:3000/films')
-            .then(response => {
-         // Beräkna det genomsnittliga betyget för varje film
-         const filmsWithAverageRating = response.data.map(film => {
-            const averageRating = film.reviews.reduce((sum, review) => sum + review.rating, 0) / film.reviews.length;
-            return { ...film, averageRating };
-          });
-       // Sortera filmerna baserat på det genomsnittliga betyget i fallande ordning
-       const sortedFilms = filmsWithAverageRating.sort((a, b) => b.averageRating - a.averageRating);
-
-       setFilms(sortedFilms);
-        })
-            .catch(err => console.log(err));
-    }, []);
-
+          .then(response => {
+            // Sortera filmerna baserat på året i fallande ordning
+            const sortedFilms = response.data.sort((a, b) => b.year - a.year);
+      
+            setFilms(sortedFilms);
+          })
+          .catch(err => console.log(err));
+      }, []);
 
     return (
         <>
         <section className="bg-grey p-4">
             <div className="container">
-                <h2 className='mb-4 mt-6 px-4'>Populära filmer <FontAwesomeIcon icon={faChevronRight} /></h2>
+                <h2 className='mb-4 mt-6 px-4'>Nya filmer<FontAwesomeIcon icon={faChevronRight} /></h2>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                {films.map((film, index)  => (
                 console.log(film.coverImage),

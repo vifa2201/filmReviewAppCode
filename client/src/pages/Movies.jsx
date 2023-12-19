@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { PopularFilms } from '../components/popularFilms';
+import { PopularFilms } from '../components/PopularFilms';
+import { LatestFilms } from '../components/LatestFilms';
 
 export default function  Movies() {
     return (
@@ -14,7 +15,7 @@ export default function  Movies() {
 
         </main>
         <PopularFilms />
-        <PopularFilms />
+        <LatestFilms />
         </>
  
     )

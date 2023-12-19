@@ -1,31 +1,35 @@
 import Navbar from "./Navbar"
-import SingleMovie from "./pages/SingleMovie"
+
 import FilmDetail from "./pages/FilmDetail";
 import Home from "./pages/Home"
 import Movies from "./pages/Movies"
 import Admin from "./pages/Admin"
 import Footer from "./components/Footer"
-import './styles/index.css'; 
+import './styles/index.css';
 import { Route, Routes } from "react-router-dom"
+import Reviews from "./pages/Reviews";
+import  Login  from "./pages/Login";
 
 
- 
- export default function App(){
+
+export default function App() {
 
   return (
     <>
       <Navbar />
-     
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/single-movie" element={<SingleMovie />} />
-           <Route path="/films/:id" element={<FilmDetail />} />
-           <Route path="/admin" element={<Admin />} />
-        </Routes>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/films/:id" element={<FilmDetail />} />
+        <Route path="/films/:id/reviews" element={<Reviews />} />
+        <Route path="/login" element={<Login />} />
+
+      </Routes>
       <Footer />
 
-  
+
     </>
   )
 

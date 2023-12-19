@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 
-export function AddFilm() {
+export function AddFilm({ onFilmAdded }) {
     const [title, setTitle] = useState('');
     const [genre, setGenre] = useState('');
     const [year, setYear] = useState('');
     const [description, setDescription] = useState('');
     const [coverImage, setImage] = useState('');
+
+    //state för meddelande
+    const [isFilmAdded, setIsFilmAdded] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,12 +33,25 @@ export function AddFilm() {
                 setYear('');
                 setDescription('');
                 setImage(null);
+
+                // Anropa onFilmAdded för att meddela att en ny film har lagts till
+                onFilmAdded(data);
+
+                // Sätt isFilmAdded till true för att visa meddelandet
+                setIsFilmAdded(true);
+
+                //timer för att skriva ut meddeland: 
+
+                setTimeout(() => {
+                    setIsFilmAdded(false);
+                }, 3000);
             })
             .catch((error) => {
                 console.error('Error adding film:', error);
                 alert('Något gick fel. Försök igen senare.');
             });
     };
+
     return (
         <>
 
@@ -43,6 +59,11 @@ export function AddFilm() {
                 <div className="container px-4">
 
                     <h2>Lägg till film:</h2>
+                   {isFilmAdded && (
+                        <div className='bg-green-400 p-2 mb-4 rounded'>
+                            Film tillagd!
+                        </div>
+                    )}
 
                     <form className="w-full max-w-lg" onSubmit={handleSubmit}>
 

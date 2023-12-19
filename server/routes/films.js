@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express();
+// Import the authentication middleware
+
 //paket för bilduppladdning
 const multer = require('multer')
 const path = require('path');
@@ -20,7 +22,7 @@ module.exports = router
 
 
 // hämta alla filmer
-router.get('/',  async (req, res) => {
+router.get('/', async (req, res) => {
 try{
  const films = await Film.find()
  res.json(films)
