@@ -1,6 +1,6 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 
-export default function Navbar() {
+export default function Navbar({ onLogout }) {
   return (
     <nav className="nav">
       <Link to="/" className="site-title" id="site-title">
@@ -15,6 +15,13 @@ export default function Navbar() {
 
     
       </ul>
+      <div>
+        {onLogout && (
+          <button onClick={onLogout}>
+            Log Out
+          </button>
+        )}
+      </div>
     </nav>
   )
 }
