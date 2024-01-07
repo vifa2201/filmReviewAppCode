@@ -18,13 +18,21 @@ En webbapplikation för att hantera filmrecensioner. Användare kan lägga till 
 1. Klona projektet till din lokala maskin.
 2. Gå in i både frontend- och backend-mapparna och kör `npm install` för att installera beroenden.
 3. Starta först backend genom "cd server" och kör kommandot "npm run devStart"
-4. Starta sedan frontEnd genom "cd clien" och kör kommandor "npm run dev"
+4. Starta sedan frontEnd genom "cd client" och kör kommandor "npm run dev"
 5.  Besök [http://localhost:3000](http://localhost:3000) i din webbläsare.
 
-## Routes
-- GET http://localhost:3000/films
-- Post http://localhost:3000/films
-- PATCH http://localhost:3000/films
-- DELETE http://localhost:3000/films/id
+## Routes filmer
+- GET http://localhost:3000/films - hämtar alla filmer
+- GET http://localhost:3000/films/id - hämtar specifik film
+- Post http://localhost:3000/films - LÄgger till film
+- PATCH http://localhost:3000/films/id - Uppdaterar film
+- DELETE http://localhost:3000/films/id - Raderar film
+
+## Routes User
+- POST http://localhost:3000/users/login - Inloggning
+- POST http://localhost:3000/users/register - Registrering {
+"name": "", "password": ""
+}
+
   
    
