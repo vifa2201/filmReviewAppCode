@@ -6,6 +6,7 @@
   body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    background-color: #333;
     color:white;
   }
 h2{
@@ -13,7 +14,10 @@ h2{
   
 
 }
-
+nav{
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
 h3{
   font-size: 1.8em;
   font-weight: 500;
@@ -28,54 +32,13 @@ h4{
   border: 0.5px solid white;
   margin-top: 1%;
 }
-  .nav {
-    background-color: #333;
-    color: white;
-    display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 2rem;
-    padding:  1rem 2rem;
-  }
-  
-  #site-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color:#FF005C;
-  }
-  
-  .nav ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .nav a {
-    color: inherit;
-    text-decoration: none;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: .25rem;
-  }
-  
-  .nav li.active {
-    color:#FF005C
-  }
-  
-  .nav li:hover {
-    text-decoration: underline;
-    color:#FF005C
-  }
+
 
   header p{
     color:white;
   }
-
-input{
-  color:rgb(68, 68, 68);
+#login input{
+  width:30em;
 }
 
   #hero{
@@ -92,9 +55,64 @@ input{
  cursor: pointer
     
   }
-
+input{
+  color:black
+}
   .star{
     color:yellow
   }
 
+  .search-results-container {
+    position: absolute;
 
+    width: 80%;
+    background-color: rgb(63, 62, 62);
+
+ /* Anpassa skugga efter ditt behov */
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+
+  }
+  
+
+ul.breadcrumb {
+  list-style: none;
+
+  margin-top: 1%;
+
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: rgb(255, 255, 255);
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color:rgba(255, 0, 92, 1);
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color:rgba(255, 0, 92, 1);
+  text-decoration: underline;
+}
+
+  @media (max-width: 767px) {
+    #hero{
+      padding-top: 4%;
+      text-align: center;
+      font-size: 3em;
+    
+    }
+}

@@ -1,0 +1,8 @@
+.results-list {
+padding: 2%;
+background-color: rgb(63, 62, 62);
+  
+    overflow-y: scroll;
+    position: relative;
+  
+}

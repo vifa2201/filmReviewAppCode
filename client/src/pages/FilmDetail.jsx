@@ -1,133 +1,145 @@
-// FilmDetail.jsx
+// importerar tillägg och komponenter
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { Rating } from '../components/Rating';
+import { Link, useMatch, useResolvedPath } from "react-router-dom"
 
 export default function FilmDetail() {
   const { id } = useParams();
   const [film, setFilm] = useState(null);
 
+  //get metod för att hämta film baserat på id
   useEffect(() => {
     axios.get(`http://localhost:3000/films/${id}`)
       .then(response => {
         setFilm(response.data);
-        console.log(response.data); // Logga filmens detaljer till konsolen
       })
       .catch(err => console.log(err));
   }, [id]);
 
+  //funktion för att lägga till recension
   const handleRatingSubmit = (review) => {
     axios
-    .patch(`http://localhost:3000/films/${id}`, {
-      reviews: [...film.reviews, review], // Lägg till den nya recensionen
-    })
-    .then((response) => {
-      console.log("Recension skickad", response.data);
-      setFilm(response.data); // Uppdatera lokala staten med den nya recensionen
-    })
-    .catch((error) => {
-      console.error("Fel vid skickande av recension:", error);
-    });
+      .patch(`http://localhost:3000/films/${id}`, {
+        reviews: [...film.reviews, review], // Lägg till den nya recensionen
+      })
+      .then((response) => {
+        setFilm(response.data); // Uppdatera lokala staten med den nya recensionen
+      })
+      .catch((error) => {
+        console.error("Fel vid skickande av recension:", error);
+      });
   }
-
+  //tar fram medelbetyget för film
+  const calculateAverageRating = () => {
+    if (film.reviews && film.reviews.length > 0) {
+      //räknar summan av betygen
+      const totalRating = film.reviews.reduce((sum, review) => sum + review.rating, 0);
+      //tar fram medelvärder
+      const averageRating = totalRating / film.reviews.length;
+      return averageRating.toFixed(1); // Avrunda till en decimal
+    }
+    return 0;
+  };
+  //om ingen film hittas
   if (!film) {
     return <p>Ingen film hittades.</p>;
   }
 
   return (
     <>
+      {/**brödsmulor */}
+      <div className="container">
+        <ul class="breadcrumb">
+          <li>  <Link to="/"> Hem
+          </Link></li>
+          <li><Link to="/films">Filmer </Link></li>
+          <li>{film.title}</li>
+        </ul>
+      </div>
+
       <main className="bg-darkGrey flex justify-center items-center w-full">
         <div className="container mx-auto flex flex-col md:flex-row items-center">
-          {/* Höger kolumn med bild och text */}
+          {/* Höger kolumn med bild */}
           <div className="md:w-1/2 p-8 text-center">
+            {/* skriver ut bilden */}
             <img src={`http://localhost:3000/${film.coverImage}`} className="w-72 mx-auto" alt="" />
           </div>
           {/* Vänster kolumn med text */}
-          <section className="md:w-1/2 p-4">
+          <section className="md:w-1/2  p-10 md:p-0">
             <h1 className='text-5xl font-bold'>{film.title}</h1>
-           
-
-            <p><strong>Genre: </strong> {film.genre}</p>
-             <p> <strong>År:</strong>{film.year}</p>
-   
-          
+            <p>{film.genre},  {film.year}</p>
             <div className="stars my-2">
-            <p> <FaStar className='star' /><strong> 7.5</strong>/10<br /> 100 recensioner </p> 
+              <div className="flex items-center">
+
+                {/* skriver ut filmens betyg */}
+                <FaStar
+                  className="Star"
+                  size={30}
+                  color="#FFD700" // Här sätter du färgen till gul
+                />
+                <strong>  {calculateAverageRating()}</strong>/5
+
+              </div>
             </div>
-            <Rating onRatingSubmit={handleRatingSubmit}/>
-            <h4 className='mt-4'>Beskrivning</h4>
-            <p>{film.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis eaque porro accusamus vel assumenda minima, enim dolores architecto aliquam corrupti!</p>
+             {/* komponent för att recensera*/}
+            <Rating onRatingSubmit={handleRatingSubmit} />
+            <h2 className='text-lg mt-4'>Beskrivning:</h2>
+            <p>{film.description} </p>
           </section>
         </div>
       </main>
-      <section className="bg-grey p-4">
-        <div className="container">
-          <div className="grid grid-cols-2">
-            <div className="table-responsive text-center mx-auto">
-              <h3 className="mb-4">Liknande filmer</h3>
-              <table className="w-100 text-sm text-left rtl:text-right">
-                <tbody>
-                  <tr className="border-b">
-                    <th scope="row">1</th>
-                    <td scope="row">
-                      <img src="./img/image.jpeg" className="w-12 h-12 mx-auto mb-2" alt="" />
-                    </td>
-                    <td scope="row">
-                      <strong>Filmens titel</strong> <br /> regissörens namn
-                    </td>
-                  </tr>
-                  <tr className="border-b">
-                    <th scope="row">2</th>
-                    <td scope="row">
-                      <img src="./img/image.jpeg" className="w-12 h-12 mx-auto mt-4 mb-2" alt="" />
-                    </td>
-                    <td scope="row">
-                      <strong>Filmens titel</strong> <br /> regissörens namn
-                    </td>
-                  </tr>
-                  <tr className="border-b">
-                    <th scope="row">3</th>
-                    <td scope="row">
-                      <img src="./img/image.jpeg" className="w-12 h-12 mx-auto mt-4 mb-2" alt="" />
-                    </td>
-                    <td scope="row">
-                      <strong>Filmens titel</strong> <br /> regissörens namn
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+
+
+      <section className="bg-grey flex justify-center items-center w-full">
+        <div className="container mx-auto flex flex-col md:flex-row items-center">
+          <div className="hidden md:block md:w-1/2 p-8 text-center">
+            <div className="flex justify-center">
+              <ul className="text-left leading-loose text-lg">
+                 {/* skriver ut ytterligare info om filmen */}
+                <li><h3>Information:</h3></li>
+                <li><strong>Titel: </strong>  {film.title}</li>
+                <li> <strong>År: </strong> {film.year}</li>
+                <li> <strong>Genre: </strong> {film.genre}</li>
+
+
+              </ul>
             </div>
-            <div className="md:w-3/4 p-4">
-              <h3>Användares recensioner</h3>
-              <a href={`/films/${id}/reviews`}>Se alla recensioner</a>
-              <div className="line"></div>
-             {/* Rendera recensionerna */}
-             {film.reviews && film.reviews.length > 0 && (
-                <div>
-                  {film.reviews.slice(-3).map((review, index) => (
-                    <div key={index} className="review">
-                      <h4 className="mt-4 mb-2">{review.comment}</h4>
-                      {[...Array(5)].map((star, index) => (
-                        <label>
-                             <FaStar
+          </div>
+
+
+          <div className="w-full md:w-1/2 p-10 md:p-4 mx-auto">
+            <h3>Senaste recensioner</h3>
+            <a href={`/films/${id}/reviews`} className='text-pink underline'>Se alla recensioner</a>
+            <div className="line"></div>
+            {/* Rendera recensionerna */}
+            {film.reviews && film.reviews.length > 0 && (
+              <div>
+                {film.reviews.slice(-3).map((review, index) => (
+                  <div key={index} className="review">
+                    <h4 className="mt-4 mb-2">{review.comment}</h4>
+                    {[...Array(5)].map((star, index) => (
+                      <label>
+                         {/* skriver ut betyget med stjärnor */}
+                        <FaStar
                           key={index}
                           className='Star'
                           size={20}
                           color={index < review.rating ? "yellow" : "#e4e5e5"}
                         />
-                        </label>
-                     
-                      ))}
-                      <div className="line"></div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+                      </label>
+
+                    ))}
+                    <div className="line"></div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
+
       </section>
     </>
   );

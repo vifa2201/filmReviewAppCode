@@ -8,7 +8,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 
 export function PopularFilms() {
-
+//state variabler
     const [films, setFilms] = useState([]);
 
     useEffect(() => {
@@ -21,8 +21,9 @@ export function PopularFilms() {
           });
        // Sortera filmerna baserat på det genomsnittliga betyget i fallande ordning
        const sortedFilms = filmsWithAverageRating.sort((a, b) => b.averageRating - a.averageRating);
-
-       setFilms(sortedFilms);
+ // Begränsa listan till de fem mest populära filmerna
+ const topFiveFilms = sortedFilms.slice(0, 5);
+       setFilms(topFiveFilms);
         })
             .catch(err => console.log(err));
     }, []);
@@ -32,16 +33,16 @@ export function PopularFilms() {
         <>
         <section className="bg-grey p-4">
             <div className="container">
-                <h2 className='mb-4 mt-6 px-4'>Populära filmer <FontAwesomeIcon icon={faChevronRight} /></h2>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+                <h2 className='mb-4 mt-6'>Populäraste filmerna <FontAwesomeIcon icon={faChevronRight} /></h2>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                {films.map((film, index)  => (
                 console.log(film.coverImage),
                 <div key={index}>
                     {/**utskrift av bild */}
                     <a href={`/films/${film._id}`}>
-                    <img src={`http://localhost:3000/${film.coverImage}`} alt={film.title} />
+                    <img src={`http://localhost:3000/${film.coverImage}`} alt={film.title} className=' sm:w-w-48 '/>
                     </a>
-                        <p>{film.title}</p>
+                        <h4>{film.title}</h4>
                     </div>
                )   )}
                </div>

@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 
 router.post("/register", async (req, res) => {
     const { email, password } = req.body;
-
     try {
         // Kontrollera om användaren redan finns
         const existingUser = await User.findOne({ email: email });
@@ -30,7 +29,6 @@ router.post("/register", async (req, res) => {
         res.json(savedUser);
     } catch (error) {
         // Om något går fel, returnera ett felmeddelande
-        console.error('Error adding user:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
@@ -52,7 +50,7 @@ router.post("/login", async (req, res) => {
 
         if (passwordMatch) {
             // Lösenorden matchar, användaren är inloggad
-            res.json({ message: 'Login successful' });
+            res.status(200).json({ message: 'Login successful' });
         } else {
             // Lösenorden matchar inte
             res.status(401).json({ error: 'Invalid password' });

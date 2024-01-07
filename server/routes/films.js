@@ -44,7 +44,6 @@ router.post('/', upload.single('coverImage'), async (req, res) => {
         if (!req.file) {
             return res.status(400).json({ error: 'No file uploaded' });
         }
-
         // Skapa en ny film med den skickade filen
         const film = new Film({
             title: req.body.title,
@@ -54,15 +53,12 @@ router.post('/', upload.single('coverImage'), async (req, res) => {
             genre: req.body.genre,
             reviews: req.body.reviews
         });
-
         // Spara filmen i databasen
         const savedFilm = await film.save();
-
         // Returnera den sparade filmen som JSON
         res.json(savedFilm);
     } catch (error) {
-        // Om något går fel, returnera ett felmeddelande
-        console.error('Error adding film:', error);
+
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
